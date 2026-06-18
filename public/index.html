@@ -1,786 +1,578 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EduCraft Systems</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
---ec-navy:#0D1B3E;
---ec-blue:#2563EB;
---ec-sky:#38BDF8;
---ec-mint:#10B981;
---ec-coral:#F97316;
---ec-yellow:#FCD34D;
---ec-purple:#8B5CF6;
---ec-pink:#EC4899;
---ec-bg:#F0F7FF;
---ec-white:#FFFFFF;
---ec-text:#1E293B;
---ec-muted:#64748B;
---r:1rem;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:var(--ec-bg);color:var(--ec-text);overflow-x:hidden}
-.sora{font-family:'Sora',sans-serif}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>EduCraft Systems · EdTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --ec-navy:#0D1B3E;
+      --ec-blue:#2563EB;
+      --ec-sky:#38BDF8;
+      --ec-mint:#10B981;
+      --ec-coral:#F97316;
+      --ec-yellow:#FCD34D;
+      --ec-purple:#8B5CF6;
+      --ec-pink:#EC4899;
+      --ec-bg:#F0F7FF;
+      --ec-white:#FFFFFF;
+      --ec-text:#1E293B;
+      --ec-muted:#64748B;
+      --r:1rem;
+      --nav-height:64px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;background:var(--ec-bg);color:var(--ec-text);overflow-x:hidden}
+    .sora{font-family:'Sora',sans-serif}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1.5px solid #e2eaf7;padding:0 5vw}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:'Sora',sans-serif;font-weight:700;font-size:1.25rem;color:var(--ec-navy);display:flex;align-items:center;gap:8px}
-.logo-badge{background:linear-gradient(135deg,var(--ec-blue),var(--ec-purple));color:#fff;border-radius:8px;padding:4px 8px;font-size:.75rem;font-weight:800;letter-spacing:.5px}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{text-decoration:none;color:var(--ec-muted);font-weight:600;font-size:.9rem;transition:color .2s}
-.nav-links a:hover{color:var(--ec-blue)}
-.nav-cta{background:var(--ec-blue);color:#fff;border:none;border-radius:10px;padding:8px 20px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s,transform .15s}
-.nav-cta:hover{background:#1d4ed8;transform:translateY(-1px)}
+    /* NAV — mobile first */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1.5px solid #e2eaf7;padding:0 4vw;height:var(--nav-height);display:flex;align-items:center}
+    .nav-inner{width:100%;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .logo{font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;color:var(--ec-navy);display:flex;align-items:center;gap:6px;white-space:nowrap}
+    .logo-badge{background:linear-gradient(135deg,var(--ec-blue),var(--ec-purple));color:#fff;border-radius:8px;padding:2px 8px;font-size:.7rem;font-weight:800;letter-spacing:.5px}
+    .nav-links{display:none;gap:1.5rem;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--ec-muted);font-weight:600;font-size:.85rem;transition:color .2s}
+    .nav-links a:hover{color:var(--ec-blue)}
+    .nav-cta{background:var(--ec-blue);color:#fff;border:none;border-radius:10px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;transition:background .2s;white-space:nowrap}
+    .nav-cta:hover{background:#1d4ed8}
+    .nav-toggle{display:flex;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px}
+    .nav-toggle span{display:block;width:24px;height:3px;background:var(--ec-navy);border-radius:4px;transition:.2s}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 5vw 0}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0D1B3E 0%,#1e3a7a 50%,#2563EB 100%);z-index:0}
-.hero-blobs{position:absolute;inset:0;z-index:1;pointer-events:none}
-.blob{position:absolute;border-radius:50%;opacity:.18;animation:floatBlob 8s ease-in-out infinite alternate}
-.blob1{width:400px;height:400px;background:#38BDF8;top:-80px;right:5%;animation-delay:0s}
-.blob2{width:300px;height:300px;background:#8B5CF6;bottom:10%;left:10%;animation-delay:2s}
-.blob3{width:200px;height:200px;background:#10B981;top:30%;right:25%;animation-delay:4s}
-@keyframes floatBlob{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.1)}}
-.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-text{}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:6px 16px;color:#fff;font-size:.8rem;font-weight:700;margin-bottom:1.5rem;backdrop-filter:blur(8px)}
-.hero-badge span{width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;animation:pulse 1.5s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
-.hero h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.25rem}
-.hero h1 .accent{background:linear-gradient(90deg,#FCD34D,#F97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{color:rgba(255,255,255,.78);font-size:1.05rem;line-height:1.7;margin-bottom:2rem;max-width:520px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-primary{background:linear-gradient(135deg,#FCD34D,#F97316);color:#0D1B3E;border:none;border-radius:12px;padding:14px 28px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;display:inline-block}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.4)}
-.btn-outline{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:12px;padding:13px 28px;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;backdrop-filter:blur(8px)}
-.btn-outline:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.7)}
-.hero-stats{display:flex;gap:2rem;margin-top:2.5rem}
-.stat{text-align:left}
-.stat-num{font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:700;color:#FCD34D}
-.stat-label{color:rgba(255,255,255,.65);font-size:.8rem;font-weight:600;margin-top:2px}
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:calc(var(--nav-height) + 20px) 4vw 40px}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0D1B3E 0%,#1e3a7a 50%,#2563EB 100%);z-index:0}
+    .hero-blobs{position:absolute;inset:0;z-index:1;pointer-events:none}
+    .blob{position:absolute;border-radius:50%;opacity:.18;animation:floatBlob 8s ease-in-out infinite alternate}
+    .blob1{width:300px;height:300px;background:#38BDF8;top:-40px;right:0;animation-delay:0s}
+    .blob2{width:200px;height:200px;background:#8B5CF6;bottom:5%;left:-20px;animation-delay:2s}
+    .blob3{width:140px;height:140px;background:#10B981;top:20%;right:10%;animation-delay:4s}
+    @keyframes floatBlob{from{transform:translate(0,0) scale(1)}to{transform:translate(20px,15px) scale(1.1)}}
+    .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:32px}
+    .hero-text{color:#fff}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:4px 14px;color:#fff;font-size:.75rem;font-weight:700;margin-bottom:1rem;backdrop-filter:blur(8px)}
+    .hero-badge span{width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;animation:pulse 1.5s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
+    .hero h1{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,5.5vw,3.2rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:.75rem}
+    .hero h1 .accent{background:linear-gradient(90deg,#FCD34D,#F97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{color:rgba(255,255,255,.78);font-size:1rem;line-height:1.6;margin-bottom:1.5rem;max-width:520px}
+    .hero-btns{display:flex;flex-wrap:wrap;gap:10px}
+    .btn-primary{background:linear-gradient(135deg,#FCD34D,#F97316);color:#0D1B3E;border:none;border-radius:12px;padding:12px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;display:inline-block;text-align:center}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.4)}
+    .btn-outline{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:12px;padding:11px 20px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;backdrop-filter:blur(8px);text-align:center}
+    .btn-outline:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.7)}
+    .hero-stats{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+    .stat{text-align:left}
+    .stat-num{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#FCD34D}
+    .stat-label{color:rgba(255,255,255,.65);font-size:.7rem;font-weight:600;margin-top:2px}
 
-/* FLOATING CARDS */
-.hero-visual{position:relative;height:480px;display:flex;align-items:center;justify-content:center}
-.mockup-main{background:#fff;border-radius:20px;padding:20px;box-shadow:0 32px 64px rgba(0,0,0,.35);width:320px;position:relative;z-index:3;animation:floatCard 6s ease-in-out infinite alternate}
-@keyframes floatCard{from{transform:translateY(0)}to{transform:translateY(-12px)}}
-.mockup-bar{display:flex;gap:6px;margin-bottom:14px}
-.mockup-dot{width:10px;height:10px;border-radius:50%}
-.mockup-screen{background:linear-gradient(135deg,#EFF6FF,#E0F2FE);border-radius:12px;padding:16px;min-height:180px}
-.mockup-title{font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;color:var(--ec-blue);margin-bottom:8px}
-.mockup-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.mockup-card{background:#fff;border-radius:8px;padding:8px;border:1px solid #E0E7FF}
-.mockup-icon{width:28px;height:28px;border-radius:6px;margin-bottom:4px}
-.mockup-label{font-size:.6rem;font-weight:700;color:var(--ec-navy)}
-.mockup-sub{font-size:.55rem;color:var(--ec-muted);margin-top:1px}
-.mockup-progress{height:4px;background:#E2E8F0;border-radius:4px;margin-top:6px;overflow:hidden}
-.mockup-fill{height:100%;border-radius:4px;animation:fillAnim 2s ease-in-out infinite alternate}
-@keyframes fillAnim{from{width:30%}to{width:90%}}
+    /* HERO VISUAL (hidden on small) */
+    .hero-visual{display:none;position:relative;height:auto;min-height:320px;width:100%;max-width:400px;margin:0 auto}
+    .mockup-main{background:#fff;border-radius:20px;padding:16px;box-shadow:0 32px 64px rgba(0,0,0,.35);width:100%;position:relative;z-index:3;animation:floatCard 6s ease-in-out infinite alternate}
+    @keyframes floatCard{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+    .mockup-bar{display:flex;gap:6px;margin-bottom:12px}
+    .mockup-dot{width:10px;height:10px;border-radius:50%}
+    .mockup-screen{background:linear-gradient(135deg,#EFF6FF,#E0F2FE);border-radius:12px;padding:12px;min-height:140px}
+    .mockup-title{font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;color:var(--ec-blue);margin-bottom:6px}
+    .mockup-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .mockup-card{background:#fff;border-radius:8px;padding:6px;border:1px solid #E0E7FF}
+    .mockup-icon{width:24px;height:24px;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+    .mockup-label{font-size:.55rem;font-weight:700;color:var(--ec-navy)}
+    .mockup-sub{font-size:.5rem;color:var(--ec-muted);margin-top:1px}
+    .mockup-progress{height:3px;background:#E2E8F0;border-radius:4px;margin-top:4px;overflow:hidden}
+    .mockup-fill{height:100%;border-radius:4px;animation:fillAnim 2s ease-in-out infinite alternate}
+    @keyframes fillAnim{from{width:30%}to{width:90%}}
+    .float-card{display:none}
 
-.float-card{position:absolute;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 12px 32px rgba(0,0,0,.2);font-size:.75rem;font-weight:700;z-index:4}
-.fc1{top:40px;left:-30px;animation:fc1anim 5s ease-in-out infinite alternate;color:var(--ec-mint);border-left:3px solid var(--ec-mint)}
-.fc2{bottom:60px;right:-20px;animation:fc2anim 6s ease-in-out infinite alternate;color:var(--ec-purple);border-left:3px solid var(--ec-purple)}
-.fc3{top:180px;left:-50px;animation:fc3anim 7s ease-in-out infinite alternate;color:var(--ec-coral);border-left:3px solid var(--ec-coral)}
-@keyframes fc1anim{from{transform:translate(0,0)}to{transform:translate(8px,-8px)}}
-@keyframes fc2anim{from{transform:translate(0,0)}to{transform:translate(-6px,10px)}}
-@keyframes fc3anim{from{transform:translate(0,0)}to{transform:translate(10px,6px)}}
-.fc-label{color:var(--ec-muted);font-weight:600;font-size:.65rem;margin-bottom:2px}
-.fc-value{font-size:1rem;font-weight:800}
+    /* sections */
+    section{padding:60px 4vw}
+    .section-inner{max-width:1200px;margin:0 auto}
+    .section-tag{display:inline-block;background:linear-gradient(135deg,#EFF6FF,#E0F2FE);color:var(--ec-blue);font-size:.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:50px;margin-bottom:.8rem}
+    .section-title{font-family:'Sora',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;color:var(--ec-navy);line-height:1.2;margin-bottom:.5rem}
+    .section-sub{color:var(--ec-muted);font-size:1rem;max-width:560px;line-height:1.6}
 
-/* SECTIONS */
-section{padding:80px 5vw}
-.section-inner{max-width:1200px;margin:0 auto}
-.section-tag{display:inline-block;background:linear-gradient(135deg,#EFF6FF,#E0F2FE);color:var(--ec-blue);font-size:.75rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:1rem}
-.section-title{font-family:'Sora',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--ec-navy);line-height:1.2;margin-bottom:.75rem}
-.section-sub{color:var(--ec-muted);font-size:1.05rem;max-width:560px;line-height:1.7}
+    /* about */
+    .about-grid{display:flex;flex-direction:column;gap:32px;margin-top:32px}
+    .about-photo-wrap{position:relative;max-width:280px;margin:0 auto;width:100%}
+    .about-photo{width:100%;aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,#2563EB,#8B5CF6);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .avatar-svg{width:70%;height:70%}
+    .about-badge-wrap{position:absolute;bottom:-10px;right:-10px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:10px}
+    .about-badge-icon{width:36px;height:36px;background:linear-gradient(135deg,#FCD34D,#F97316);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+    .about-badge-num{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--ec-navy)}
+    .about-badge-label{font-size:.65rem;color:var(--ec-muted);font-weight:600}
+    .about-skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+    .skill-pill{background:#fff;border:1.5px solid #E0E7FF;border-radius:50px;padding:5px 12px;font-size:.75rem;font-weight:700;color:var(--ec-navy);display:flex;align-items:center;gap:4px}
+    .skill-dot{width:7px;height:7px;border-radius:50%}
+    .about-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:1.5rem}
+    .about-stat-card{background:linear-gradient(135deg,#EFF6FF,#E0F2FE);border-radius:14px;padding:12px;text-align:center}
+    .about-stat-num{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:700;color:var(--ec-blue)}
+    .about-stat-label{font-size:.7rem;color:var(--ec-muted);font-weight:600;margin-top:2px}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:center;margin-top:56px}
-.about-photo-wrap{position:relative}
-.about-photo{width:100%;aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,#2563EB,#8B5CF6);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.avatar-svg{width:220px;height:220px}
-.about-badge-wrap{position:absolute;bottom:-20px;right:-20px;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:12px}
-.about-badge-icon{width:44px;height:44px;background:linear-gradient(135deg,#FCD34D,#F97316);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
-.about-badge-text{}
-.about-badge-num{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ec-navy)}
-.about-badge-label{font-size:.75rem;color:var(--ec-muted);font-weight:600}
-.about-skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.5rem}
-.skill-pill{background:#fff;border:1.5px solid #E0E7FF;border-radius:50px;padding:7px 16px;font-size:.82rem;font-weight:700;color:var(--ec-navy);display:flex;align-items:center;gap:6px}
-.skill-dot{width:8px;height:8px;border-radius:50%}
-.about-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:2rem}
-.about-stat-card{background:linear-gradient(135deg,#EFF6FF,#E0F2FE);border-radius:14px;padding:16px;text-align:center}
-.about-stat-num{font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:700;color:var(--ec-blue)}
-.about-stat-label{font-size:.78rem;color:var(--ec-muted);font-weight:600;margin-top:2px}
+    /* gallery */
+    .gallery-section{background:#fff}
+    .filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin:1.5rem 0}
+    .filter-btn{background:#F1F5F9;border:none;border-radius:50px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;color:var(--ec-muted);cursor:pointer;transition:all .2s}
+    .filter-btn.active,.filter-btn:hover{background:var(--ec-blue);color:#fff}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+    .project-card{background:#fff;border-radius:18px;border:1.5px solid #E0E7FF;overflow:hidden;transition:transform .25s,box-shadow .25s;cursor:pointer}
+    .project-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(37,99,235,.1)}
+    .project-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+    .project-thumb-label{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.55);color:#fff;font-size:.6rem;font-weight:800;padding:3px 8px;border-radius:50px}
+    .project-thumb-price{position:absolute;top:8px;right:8px;background:#FCD34D;color:#0D1B3E;font-size:.65rem;font-weight:800;padding:3px 8px;border-radius:50px}
+    .project-body{padding:14px}
+    .project-cat{display:inline-block;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:50px;margin-bottom:6px}
+    .project-title{font-family:'Sora',sans-serif;font-size:.95rem;font-weight:700;color:var(--ec-navy);margin-bottom:4px}
+    .project-desc{font-size:.78rem;color:var(--ec-muted);line-height:1.5;margin-bottom:8px}
+    .project-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+    .tech-tag{background:#F1F5F9;color:var(--ec-muted);font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:4px}
+    .project-footer{display:flex;gap:6px}
+    .btn-demo{flex:1;background:var(--ec-blue);color:#fff;border:none;border-radius:8px;padding:8px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer;transition:background .2s}
+    .btn-demo:hover{background:#1d4ed8}
+    .btn-details{background:#F1F5F9;color:var(--ec-navy);border:none;border-radius:8px;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer}
+    .stars{display:flex;gap:2px;margin-bottom:4px;font-size:.8rem}
 
-/* GALLERY */
-.gallery-section{background:#fff}
-.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin:2rem 0}
-.filter-btn{background:#F1F5F9;border:none;border-radius:50px;padding:8px 18px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;color:var(--ec-muted);cursor:pointer;transition:all .2s}
-.filter-btn.active,.filter-btn:hover{background:var(--ec-blue);color:#fff}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
-.project-card{background:#fff;border-radius:20px;border:1.5px solid #E0E7FF;overflow:hidden;transition:transform .25s,box-shadow .25s;cursor:pointer}
-.project-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(37,99,235,.12)}
-.project-thumb{height:190px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden}
-.project-thumb-label{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.55);color:#fff;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:50px;backdrop-filter:blur(4px)}
-.project-thumb-price{position:absolute;top:12px;right:12px;background:#FCD34D;color:#0D1B3E;font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:50px}
-.project-body{padding:18px}
-.project-cat{display:inline-block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 10px;border-radius:50px;margin-bottom:8px}
-.project-title{font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--ec-navy);margin-bottom:6px}
-.project-desc{font-size:.83rem;color:var(--ec-muted);line-height:1.6;margin-bottom:12px}
-.project-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
-.tech-tag{background:#F1F5F9;color:var(--ec-muted);font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:6px}
-.project-footer{display:flex;gap:8px}
-.btn-demo{flex:1;background:var(--ec-blue);color:#fff;border:none;border-radius:10px;padding:9px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s}
-.btn-demo:hover{background:#1d4ed8}
-.btn-details{background:#F1F5F9;color:var(--ec-navy);border:none;border-radius:10px;padding:9px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s}
-.btn-details:hover{background:#E0E7FF}
-.stars{display:flex;gap:2px;margin-bottom:6px}
-.star{color:#FCD34D;font-size:.85rem}
+    /* services */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-top:32px}
+    .service-card{background:#fff;border-radius:16px;padding:18px;border:1.5px solid #E0E7FF;transition:transform .2s}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(37,99,235,.08)}
+    .service-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:10px}
+    .service-title{font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;color:var(--ec-navy);margin-bottom:4px}
+    .service-desc{font-size:.78rem;color:var(--ec-muted);line-height:1.5}
 
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-top:48px}
-.service-card{background:#fff;border-radius:18px;padding:24px;border:1.5px solid #E0E7FF;transition:transform .2s,box-shadow .2s}
-.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(37,99,235,.1)}
-.service-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:14px}
-.service-title{font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--ec-navy);margin-bottom:6px}
-.service-desc{font-size:.83rem;color:var(--ec-muted);line-height:1.6}
+    /* demo */
+    .demo-section{background:linear-gradient(135deg,#0D1B3E,#1e3a7a)}
+    .demo-grid{display:flex;flex-direction:column;gap:24px;margin-top:32px}
+    .demo-games{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .demo-game-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;text-align:center;backdrop-filter:blur(8px)}
+    .demo-game-card:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+    .demo-game-icon{font-size:2rem;display:block;margin-bottom:4px}
+    .demo-game-title{font-family:'Sora',sans-serif;font-size:.8rem;font-weight:700;color:#fff;margin-bottom:2px}
+    .demo-game-desc{font-size:.65rem;color:rgba(255,255,255,.6)}
+    .demo-frame{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.2);border-radius:18px;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;padding:12px}
+    #demo-container{width:100%;min-height:260px;display:flex;align-items:center;justify-content:center;padding:12px}
+    .demo-placeholder{text-align:center}
+    .demo-placeholder-icon{font-size:3rem;display:block;margin-bottom:8px}
+    .demo-placeholder-text{color:rgba(255,255,255,.6);font-size:.8rem;font-weight:600}
 
-/* DEMO */
-.demo-section{background:linear-gradient(135deg,#0D1B3E,#1e3a7a)}
-.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px}
-.demo-games{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.demo-game-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:20px;cursor:pointer;transition:all .2s;text-align:center;backdrop-filter:blur(8px)}
-.demo-game-card:hover{background:rgba(255,255,255,.15);transform:translateY(-3px)}
-.demo-game-icon{font-size:2.5rem;display:block;margin-bottom:8px}
-.demo-game-title{font-family:'Sora',sans-serif;font-size:.88rem;font-weight:700;color:#fff;margin-bottom:4px}
-.demo-game-desc{font-size:.72rem;color:rgba(255,255,255,.6)}
-.demo-frame{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.2);border-radius:20px;overflow:hidden;min-height:360px;display:flex;align-items:center;justify-content:center;flex-direction:column}
-#demo-container{width:100%;min-height:360px;display:flex;align-items:center;justify-content:center;padding:20px}
-.demo-placeholder{text-align:center}
-.demo-placeholder-icon{font-size:4rem;display:block;margin-bottom:12px}
-.demo-placeholder-text{color:rgba(255,255,255,.6);font-size:.9rem;font-weight:600}
-.more-btn {
-    display: inline-flex;
-    align-items: center;
-    background: linear-gradient(135deg, #F97316, #EC4899);
-    color: white;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    padding: 16px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
-    transition: all 0.3s ease;
-}
+    /* quiz game inside demo */
+    .quiz-game{width:100%;color:#fff;text-align:center}
+    .quiz-q{font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:16px;line-height:1.4;color:#FCD34D}
+    .quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:320px;margin:0 auto 12px}
+    .quiz-opt{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:10px;color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;transition:all .2s}
+    .quiz-opt:hover{background:rgba(255,255,255,.25)}
+    .quiz-opt.correct{background:rgba(16,185,129,.3);border-color:#10B981}
+    .quiz-opt.wrong{background:rgba(239,68,68,.3);border-color:#EF4444}
+    .quiz-score{font-size:.75rem;color:rgba(255,255,255,.6);margin-top:6px}
+    .quiz-progress{background:rgba(255,255,255,.15);height:4px;border-radius:4px;width:100%;margin-bottom:12px;overflow:hidden}
+    .quiz-prog-fill{height:100%;background:#FCD34D;border-radius:4px;transition:width .4s}
 
-.more-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(236, 72, 153, 0.4);
-    color: white;
-}
-/* QUIZ GAME */
-.quiz-game{width:100%;color:#fff;text-align:center}
-.quiz-q{font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;margin-bottom:20px;line-height:1.5;color:#FCD34D}
-.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:360px;margin:0 auto 16px}
-.quiz-opt{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:12px;color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .2s}
-.quiz-opt:hover{background:rgba(255,255,255,.25)}
-.quiz-opt.correct{background:rgba(16,185,129,.3);border-color:#10B981}
-.quiz-opt.wrong{background:rgba(239,68,68,.3);border-color:#EF4444}
-.quiz-score{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:8px}
-.quiz-progress{background:rgba(255,255,255,.15);height:5px;border-radius:4px;width:100%;margin-bottom:16px;overflow:hidden}
-.quiz-prog-fill{height:100%;background:#FCD34D;border-radius:4px;transition:width .4s}
+    /* testimonials */
+    .testimonials-section{background:#fff}
+    .testimonials-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+    .testi-card{background:var(--ec-bg);border-radius:16px;padding:18px;border:1.5px solid #E0E7FF;position:relative}
+    .testi-quote{font-size:2.5rem;color:#E0E7FF;position:absolute;top:6px;right:14px;font-family:serif;line-height:1}
+    .testi-text{font-size:.85rem;color:var(--ec-text);line-height:1.6;margin-bottom:12px;font-style:italic}
+    .testi-author{display:flex;align-items:center;gap:10px}
+    .testi-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;color:#fff;flex-shrink:0}
+    .testi-name{font-weight:800;font-size:.85rem;color:var(--ec-navy)}
+    .testi-role{font-size:.7rem;color:var(--ec-muted)}
 
-/* TESTIMONIALS */
-.testimonials-section{background:#fff}
-.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:48px}
-.testi-card{background:var(--ec-bg);border-radius:18px;padding:24px;border:1.5px solid #E0E7FF;position:relative}
-.testi-quote{font-size:3rem;color:#E0E7FF;position:absolute;top:12px;right:18px;font-family:serif;line-height:1}
-.testi-text{font-size:.9rem;color:var(--ec-text);line-height:1.7;margin-bottom:16px;font-style:italic}
-.testi-author{display:flex;align-items:center;gap:12px}
-.testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;color:#fff;flex-shrink:0}
-.testi-name{font-weight:800;font-size:.9rem;color:var(--ec-navy)}
-.testi-role{font-size:.75rem;color:var(--ec-muted)}
+    /* contact */
+    .contact-section{background:linear-gradient(135deg,#0D1B3E,#1e3a7a);padding:60px 4vw}
+    .contact-grid{display:flex;flex-direction:column;gap:32px;margin-top:32px}
+    .contact-form{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);border-radius:20px;padding:24px;backdrop-filter:blur(8px)}
+    .form-row{margin-bottom:14px}
+    .form-label{display:block;color:rgba(255,255,255,.8);font-size:.75rem;font-weight:700;margin-bottom:4px}
+    .form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 12px;color:#fff;font-family:'Nunito',sans-serif;font-size:.85rem;transition:border-color .2s;outline:none}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--ec-sky)}
+    .form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.4)}
+    .form-select option{background:#1e3a7a}
+    .form-textarea{resize:vertical;min-height:100px}
+    .btn-send{width:100%;background:linear-gradient(135deg,#FCD34D,#F97316);color:#0D1B3E;border:none;border-radius:12px;padding:12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:6px}
+    .btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.4)}
+    .contact-info h3{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:1rem}
+    .contact-links{display:flex;flex-direction:column;gap:10px}
+    .contact-link{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:12px 14px;text-decoration:none;transition:background .2s}
+    .contact-link:hover{background:rgba(255,255,255,.16)}
+    .contact-link-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .contact-link-text{color:#fff;font-weight:700;font-size:.85rem}
+    .contact-link-sub{color:rgba(255,255,255,.5);font-size:.7rem}
 
-/* CONTACT */
-.contact-section{background:linear-gradient(135deg,#0D1B3E,#1e3a7a);padding:80px 5vw}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
-.contact-form{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);border-radius:24px;padding:32px;backdrop-filter:blur(8px)}
-.form-row{margin-bottom:16px}
-.form-label{display:block;color:rgba(255,255,255,.8);font-size:.82rem;font-weight:700;margin-bottom:6px}
-.form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 14px;color:#fff;font-family:'Nunito',sans-serif;font-size:.9rem;transition:border-color .2s;outline:none}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--ec-sky)}
-.form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.4)}
-.form-select option{background:#1e3a7a}
-.form-textarea{resize:vertical;min-height:120px}
-.btn-send{width:100%;background:linear-gradient(135deg,#FCD34D,#F97316);color:#0D1B3E;border:none;border-radius:12px;padding:14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:8px}
-.btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.4)}
-.contact-info h3{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1.5rem}
-.contact-links{display:flex;flex-direction:column;gap:12px}
-.contact-link{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 18px;text-decoration:none;transition:background .2s}
-.contact-link:hover{background:rgba(255,255,255,.16)}
-.contact-link-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-.contact-link-text{color:#fff;font-weight:700;font-size:.9rem}
-.contact-link-sub{color:rgba(255,255,255,.55);font-size:.75rem}
+    /* footer */
+    footer{background:#060f22;padding:24px 4vw;text-align:center;color:rgba(255,255,255,.45);font-size:.75rem}
+    footer a{color:rgba(255,255,255,.6);text-decoration:none;margin:0 6px}
 
-/* FOOTER */
-footer{background:#060f22;padding:32px 5vw;text-align:center;color:rgba(255,255,255,.45);font-size:.82rem}
-footer a{color:rgba(255,255,255,.6);text-decoration:none}
+    /* modal */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+    .modal-overlay.open{display:flex}
+    .modal-box{background:#fff;border-radius:20px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+    .modal-close{position:absolute;top:12px;right:12px;background:#F1F5F9;border:none;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;z-index:10}
+    .modal-header{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;border-radius:20px 20px 0 0;position:relative;overflow:hidden}
+    .modal-body{padding:20px}
+    .modal-title{font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:700;color:var(--ec-navy);margin-bottom:6px}
+    .modal-desc{color:var(--ec-muted);font-size:.85rem;line-height:1.6;margin-bottom:14px}
+    .modal-feature-list{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px}
+    .modal-feature{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--ec-text)}
+    .modal-feature::before{content:'✓';color:var(--ec-mint);font-weight:800;flex-shrink:0}
+    .pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+    .pricing-card{border:1.5px solid #E0E7FF;border-radius:12px;padding:12px;text-align:center;cursor:pointer}
+    .pricing-card.featured{border-color:var(--ec-blue);background:#EFF6FF}
+    .pricing-card .p-label{font-size:.65rem;font-weight:800;text-transform:uppercase;color:var(--ec-muted);margin-bottom:4px}
+    .pricing-card .p-price{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--ec-navy)}
+    .pricing-card .p-what{font-size:.65rem;color:var(--ec-muted);margin-top:2px}
+    .modal-footer{display:flex;gap:8px;flex-wrap:wrap}
 
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
-.modal-overlay.open{display:flex}
-.modal-box{background:#fff;border-radius:24px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
-.modal-close{position:absolute;top:16px;right:16px;background:#F1F5F9;border:none;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;z-index:10}
-.modal-header{height:220px;display:flex;align-items:center;justify-content:center;font-size:4rem;border-radius:24px 24px 0 0;position:relative;overflow:hidden}
-.modal-body{padding:28px}
-.modal-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ec-navy);margin-bottom:8px}
-.modal-desc{color:var(--ec-muted);font-size:.9rem;line-height:1.7;margin-bottom:20px}
-.modal-feature-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
-.modal-feature{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--ec-text)}
-.modal-feature::before{content:'✓';color:var(--ec-mint);font-weight:800;flex-shrink:0}
-.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.pricing-card{border:1.5px solid #E0E7FF;border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all .2s}
-.pricing-card.featured{border-color:var(--ec-blue);background:#EFF6FF}
-.pricing-card .p-label{font-size:.72rem;font-weight:800;text-transform:uppercase;color:var(--ec-muted);margin-bottom:6px}
-.pricing-card .p-price{font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:700;color:var(--ec-navy)}
-.pricing-card .p-what{font-size:.72rem;color:var(--ec-muted);margin-top:4px}
-.modal-footer{display:flex;gap:10px}
+    /* toast */
+    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ec-mint);color:#fff;font-weight:700;font-size:.85rem;padding:10px 20px;border-radius:12px;z-index:300;opacity:0;transition:all .3s;pointer-events:none;width:90%;max-width:400px;text-align:center}
+    .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* ANIMATIONS */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.fade-in{opacity:0;animation:fadeInUp .7s ease forwards}
-.fade-in-1{animation-delay:.1s}
-.fade-in-2{animation-delay:.25s}
-.fade-in-3{animation-delay:.4s}
-.fade-in-4{animation-delay:.55s}
-.fade-in-5{animation-delay:.7s}
+    /* more btn */
+    .more-btn{display:inline-flex;align-items:center;background:linear-gradient(135deg,#F97316,#EC4899);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;padding:12px 28px;border-radius:50px;text-decoration:none;box-shadow:0 8px 20px rgba(249,115,22,.3);transition:all .3s;margin-top:8px}
+    .more-btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(236,72,153,.4)}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--ec-mint);color:#fff;font-weight:700;font-size:.9rem;padding:12px 24px;border-radius:12px;z-index:300;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none}
-.toast.show{transform:translateY(0);opacity:1}
-
-@media(max-width:900px){
-.hero-content,.about-grid,.contact-grid,.demo-grid{grid-template-columns:1fr}
-.hero-visual{display:none}
-.about-badge-wrap{right:0}
-}
-</style>
+    /* tablet+ */
+    @media (min-width: 640px){
+      .hero-content{flex-direction:row;gap:40px}
+      .hero-text{flex:1}
+      .hero-visual{display:flex;flex:1;max-width:400px}
+      .float-card{display:block;position:absolute;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 12px 32px rgba(0,0,0,.2);font-size:.7rem;font-weight:700;z-index:4}
+      .fc1{top:20px;left:-10px;animation:fc1anim 5s ease-in-out infinite alternate;color:var(--ec-mint);border-left:3px solid var(--ec-mint)}
+      .fc2{bottom:40px;right:-10px;animation:fc2anim 6s ease-in-out infinite alternate;color:var(--ec-purple);border-left:3px solid var(--ec-purple)}
+      .fc3{top:140px;left:-30px;animation:fc3anim 7s ease-in-out infinite alternate;color:var(--ec-coral);border-left:3px solid var(--ec-coral)}
+      @keyframes fc1anim{from{transform:translate(0,0)}to{transform:translate(6px,-6px)}}
+      @keyframes fc2anim{from{transform:translate(0,0)}to{transform:translate(-4px,8px)}}
+      @keyframes fc3anim{from{transform:translate(0,0)}to{transform:translate(8px,4px)}}
+      .fc-label{color:var(--ec-muted);font-weight:600;font-size:.6rem;margin-bottom:2px}
+      .fc-value{font-size:.9rem;font-weight:800}
+      .about-grid{flex-direction:row;gap:40px;align-items:center}
+      .about-photo-wrap{flex:0 0 260px}
+      .demo-grid{flex-direction:row;align-items:stretch}
+      .demo-games{flex:1;grid-template-columns:1fr 1fr}
+      .demo-frame{flex:1}
+      .contact-grid{flex-direction:row;gap:40px}
+      .contact-form{flex:1}
+      .contact-info{flex:1}
+      .testimonials-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (min-width: 900px){
+      .nav-links{display:flex}
+      .nav-toggle{display:none}
+      .testimonials-grid{grid-template-columns:repeat(3,1fr)}
+      .services-grid{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (max-width: 639px){
+      .hero-visual{display:none}
+      .hero-stats .stat-num{font-size:1.2rem}
+    }
+    /* mobile nav open */
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:var(--nav-height);left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);padding:16px 4vw;border-bottom:1px solid #e2eaf7;gap:12px;align-items:center}
+    .nav-links.open a{font-size:1rem}
+  </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav>
-<div class="nav-inner">
-<div class="logo">
-<div class="logo-badge">EC</div>
-<span>EduCraft <span style="color:var(--ec-blue)">Systems</span></span>
-</div>
-<ul class="nav-links">
-<li><a href="#about">About</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#demo">Live Demo</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<button class="nav-cta" onclick="scrollTo('#contact')">Get a Quote</button>
-</div>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-badge">EC</span> EduCraft <span style="color:var(--ec-blue)">Systems</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+      <li><a href="#demo" onclick="closeNav()">Live Demo</a></li>
+      <li><a href="#services" onclick="closeNav()">Services</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="scrollTo('#contact')">Quote</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-<div class="hero-bg"></div>
-<div class="hero-blobs">
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
-</div>
-<div class="hero-content">
-<div class="hero-text fade-in fade-in-1">
-<div class="hero-badge"><span></span> Open for Commissions</div>
-<h1 class="sora">Educational Systems & <span class="accent">Learning Games</span> Built for Future Educators</h1>
-<p class="hero-sub">Custom web applications, thesis systems, and interactive learning games designed for Elementary and Early Childhood Education.</p>
-<div class="hero-btns">
-<a href="#projects" class="btn-primary">🎓 Explore Projects</a>
-<a href="#demo" class="btn-outline">▶ Try Live Demo</a>
-<a href="#contact" class="btn-outline">✉ Request Custom System</a>
-</div>
-<div class="hero-stats">
-<div class="stat"><div class="stat-num">35+</div><div class="stat-label">Systems Built</div></div>
-<div class="stat"><div class="stat-num">50+</div><div class="stat-label">Happy Clients</div></div>
-<div class="stat"><div class="stat-num">5★</div><div class="stat-label">Avg Rating</div></div>
-</div>
-</div>
-<div class="hero-visual fade-in fade-in-3">
-<div class="mockup-main">
-<div class="mockup-bar"><div class="mockup-dot" style="background:#FF5F57"></div><div class="mockup-dot" style="background:#FFBD2E"></div><div class="mockup-dot" style="background:#28C840"></div></div>
-<div class="mockup-screen">
-<div class="mockup-title">📊 Student Learning Dashboard</div>
-<div class="mockup-grid">
-<div class="mockup-card"><div class="mockup-icon" style="background:#EFF6FF;border-radius:6px;display:flex;align-items:center;justify-content:center">📖</div><div class="mockup-label">Reading</div><div class="mockup-sub">Grade 2 Level</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-blue);width:72%"></div></div></div>
-<div class="mockup-card"><div class="mockup-icon" style="background:#F0FDF4;border-radius:6px;display:flex;align-items:center;justify-content:center">🔢</div><div class="mockup-label">Math</div><div class="mockup-sub">Addition & Sub</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-mint);animation-delay:.5s"></div></div></div>
-<div class="mockup-card"><div class="mockup-icon" style="background:#FFF7ED;border-radius:6px;display:flex;align-items:center;justify-content:center">🎨</div><div class="mockup-label">Arts</div><div class="mockup-sub">Creative Crafts</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-coral)"></div></div></div>
-<div class="mockup-card"><div class="mockup-icon" style="background:#F5F3FF;border-radius:6px;display:flex;align-items:center;justify-content:center">🔬</div><div class="mockup-label">Science</div><div class="mockup-sub">Nature Study</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-purple)"></div></div></div>
-</div>
-</div>
-</div>
-<div class="float-card fc1"><div class="fc-label">Today's Lessons</div><div class="fc-value" style="color:var(--ec-mint)">8 Completed ✓</div></div>
-<div class="float-card fc2"><div class="fc-label">Class Average</div><div class="fc-value" style="color:var(--ec-purple)">94.5% 🏆</div></div>
-<div class="float-card fc3"><div class="fc-label">Active Students</div><div class="fc-value" style="color:var(--ec-coral)">42 Online 🔴</div></div>
-</div>
-</div>
+  <div class="hero-bg"></div>
+  <div class="hero-blobs"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><span></span> Open for Commissions</div>
+      <h1>Educational Systems & <span class="accent">Learning Games</span></h1>
+      <p class="hero-sub">Custom web apps, thesis systems, and interactive learning games for Elementary & Early Childhood Education.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">🎓 Explore Projects</a>
+        <a href="#demo" class="btn-outline">▶ Try Demo</a>
+        <a href="#contact" class="btn-outline">✉ Request</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">35+</div><div class="stat-label">Systems Built</div></div>
+        <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Happy Clients</div></div>
+        <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Avg Rating</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mockup-main">
+        <div class="mockup-bar"><div class="mockup-dot" style="background:#FF5F57"></div><div class="mockup-dot" style="background:#FFBD2E"></div><div class="mockup-dot" style="background:#28C840"></div></div>
+        <div class="mockup-screen">
+          <div class="mockup-title">📊 Student Learning Dashboard</div>
+          <div class="mockup-grid">
+            <div class="mockup-card"><div class="mockup-icon" style="background:#EFF6FF;">📖</div><div class="mockup-label">Reading</div><div class="mockup-sub">Grade 2</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-blue);width:72%"></div></div></div>
+            <div class="mockup-card"><div class="mockup-icon" style="background:#F0FDF4;">🔢</div><div class="mockup-label">Math</div><div class="mockup-sub">Addition</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-mint);animation-delay:.5s"></div></div></div>
+            <div class="mockup-card"><div class="mockup-icon" style="background:#FFF7ED;">🎨</div><div class="mockup-label">Arts</div><div class="mockup-sub">Crafts</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-coral)"></div></div></div>
+            <div class="mockup-card"><div class="mockup-icon" style="background:#F5F3FF;">🔬</div><div class="mockup-label">Science</div><div class="mockup-sub">Nature</div><div class="mockup-progress"><div class="mockup-fill" style="background:var(--ec-purple)"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="float-card fc1"><div class="fc-label">Today's Lessons</div><div class="fc-value" style="color:var(--ec-mint)">8 Completed ✓</div></div>
+      <div class="float-card fc2"><div class="fc-label">Class Average</div><div class="fc-value" style="color:var(--ec-purple)">94.5% 🏆</div></div>
+      <div class="float-card fc3"><div class="fc-label">Active Students</div><div class="fc-value" style="color:var(--ec-coral)">42 Online 🔴</div></div>
+    </div>
+  </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-<div class="section-inner">
-<div class="section-tag">About the Developer</div>
-<h2 class="section-title">Passionate About EdTech & Creative Coding</h2>
-<p class="section-sub">Building meaningful educational tools that empower students and teachers across the Philippines.</p>
-<div class="about-grid">
-<div class="about-photo-wrap">
-<div class="about-photo">
-<svg class="avatar-svg" viewBox="0 0 220 220" fill="none">
-<circle cx="110" cy="80" r="52" fill="rgba(255,255,255,0.25)"/>
-<circle cx="110" cy="72" r="36" fill="rgba(255,255,255,0.5)"/>
-<path d="M40 180 Q55 130 110 130 Q165 130 180 180" fill="rgba(255,255,255,0.4)"/>
-<circle cx="110" cy="68" r="24" fill="rgba(255,255,255,0.9)"/>
-<circle cx="103" cy="64" r="4" fill="#2563EB"/>
-<circle cx="117" cy="64" r="4" fill="#2563EB"/>
-<path d="M103 76 Q110 82 117 76" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-</svg>
-</div>
-<div class="about-badge-wrap">
-<div class="about-badge-icon">🏆</div>
-<div class="about-badge-text"><div class="about-badge-num">35+</div><div class="about-badge-label">Systems Delivered</div></div>
-</div>
-</div>
-<div>
-<h3 class="sora" style="font-size:1.5rem;font-weight:700;color:var(--ec-navy);margin-bottom:1rem">Full-Stack Developer & EdTech Specialist</h3>
-<p style="color:var(--ec-muted);line-height:1.8;margin-bottom:1rem">I design and build custom educational systems, thesis/capstone projects, and interactive learning games for Elementary Education and Early Childhood Education students, teachers, and schools. Every project is crafted with real pedagogical goals in mind — making learning fun, measurable, and accessible.</p>
-<p style="color:var(--ec-muted);line-height:1.8;margin-bottom:1.5rem">From attendance systems and LMS platforms to preschool math games and Arduino-based projects, I create production-ready, fully documented solutions you can present, submit, or deploy confidently.</p>
-<div class="about-skills">
-<div class="skill-pill"><div class="skill-dot" style="background:var(--ec-blue)"></div>Web Development</div>
-<div class="skill-pill"><div class="skill-dot" style="background:var(--ec-purple)"></div>UI/UX Design</div>
-<div class="skill-pill"><div class="skill-dot" style="background:var(--ec-mint)"></div>Educational Games</div>
-<div class="skill-pill"><div class="skill-dot" style="background:var(--ec-coral)"></div>Thesis & Capstone</div>
-<div class="skill-pill"><div class="skill-dot" style="background:var(--ec-yellow)"></div>Arduino / IoT</div>
-<div class="skill-pill"><div class="skill-dot" style="background:var(--ec-pink)"></div>React & Next.js</div>
-<div class="skill-pill"><div class="skill-dot" style="background:#06b6d4)"></div>MongoDB & Firebase</div>
-</div>
-<div class="about-stats-row">
-<div class="about-stat-card"><div class="about-stat-num">4+</div><div class="about-stat-label">Years Experience</div></div>
-<div class="about-stat-card"><div class="about-stat-num">50+</div><div class="about-stat-label">Satisfied Clients</div></div>
-<div class="about-stat-card"><div class="about-stat-num">100%</div><div class="about-stat-label">Project Success</div></div>
-</div>
-</div>
-</div>
-</div>
+  <div class="section-inner">
+    <div class="section-tag">About the Developer</div>
+    <h2 class="section-title">Passionate About EdTech & Creative Coding</h2>
+    <p class="section-sub">Building meaningful educational tools that empower students and teachers across the Philippines.</p>
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-photo">
+          <svg class="avatar-svg" viewBox="0 0 220 220" fill="none">
+            <circle cx="110" cy="80" r="52" fill="rgba(255,255,255,0.25)"/>
+            <circle cx="110" cy="72" r="36" fill="rgba(255,255,255,0.5)"/>
+            <path d="M40 180 Q55 130 110 130 Q165 130 180 180" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="110" cy="68" r="24" fill="rgba(255,255,255,0.9)"/>
+            <circle cx="103" cy="64" r="4" fill="#2563EB"/>
+            <circle cx="117" cy="64" r="4" fill="#2563EB"/>
+            <path d="M103 76 Q110 82 117 76" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="about-badge-wrap"><div class="about-badge-icon">🏆</div><div><div class="about-badge-num">35+</div><div class="about-badge-label">Systems Delivered</div></div></div>
+      </div>
+      <div>
+        <h3 class="sora" style="font-size:1.3rem;font-weight:700;color:var(--ec-navy);margin-bottom:.8rem">Full-Stack Developer & EdTech Specialist</h3>
+        <p style="color:var(--ec-muted);line-height:1.7;margin-bottom:.8rem">I design and build custom educational systems, thesis/capstone projects, and interactive learning games for Elementary and Early Childhood Education.</p>
+        <div class="about-skills">
+          <div class="skill-pill"><span class="skill-dot" style="background:var(--ec-blue)"></span>Web Dev</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:var(--ec-purple)"></span>UI/UX</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:var(--ec-mint)"></span>Ed Games</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:var(--ec-coral)"></span>Thesis</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:var(--ec-yellow)"></span>Arduino</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:var(--ec-pink)"></span>React</div>
+        </div>
+        <div class="about-stats-row">
+          <div class="about-stat-card"><div class="about-stat-num">4+</div><div class="about-stat-label">Years</div></div>
+          <div class="about-stat-card"><div class="about-stat-num">50+</div><div class="about-stat-label">Clients</div></div>
+          <div class="about-stat-card"><div class="about-stat-num">100%</div><div class="about-stat-label">Success</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- PROJECTS GALLERY -->
+<!-- PROJECTS -->
 <section id="projects" class="gallery-section">
-<div class="section-inner">
-<div class="section-tag">Project Gallery & Store</div>
-<h2 class="section-title">Browse & Purchase Educational Systems</h2>
-<p class="section-sub">All projects include full source code, documentation, and optional customization support.</p>
-<div class="filter-bar" id="filterBar">
-<button class="filter-btn active" onclick="filterProjects('all',this)">All Projects</button>
-<button class="filter-btn" onclick="filterProjects('lms',this)">LMS</button>
-<button class="filter-btn" onclick="filterProjects('game',this)">Learning Games</button>
-<button class="filter-btn" onclick="filterProjects('attendance',this)">Attendance</button>
-<button class="filter-btn" onclick="filterProjects('quiz',this)">Quiz Systems</button>
-<button class="filter-btn" onclick="filterProjects('preschool',this)">Preschool Apps</button>
-<button class="filter-btn" onclick="filterProjects('arduino',this)">Arduino</button>
-</div>
-<div class="projects-grid" id="projectsGrid"></div>
-</div>
+  <div class="section-inner">
+    <div class="section-tag">Project Gallery & Store</div>
+    <h2 class="section-title">Browse & Purchase Educational Systems</h2>
+    <p class="section-sub">Full source code, documentation, and customization support included.</p>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('lms',this)">LMS</button>
+      <button class="filter-btn" onclick="filterProjects('game',this)">Games</button>
+      <button class="filter-btn" onclick="filterProjects('attendance',this)">Attendance</button>
+      <button class="filter-btn" onclick="filterProjects('quiz',this)">Quiz</button>
+      <button class="filter-btn" onclick="filterProjects('preschool',this)">Preschool</button>
+      <button class="filter-btn" onclick="filterProjects('arduino',this)">Arduino</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
 </section>
 
-<!-- DEMO SECTION
+<!-- DEMO -->
 <section id="demo" class="demo-section">
-<div class="section-inner">
-<div class="section-tag" style="background:rgba(255,255,255,.1);color:#FCD34D">Interactive Demo Zone</div>
-<h2 class="section-title" style="color:#fff">Try the Apps Live — Right Here</h2>
-<p class="section-sub" style="color:rgba(255,255,255,.7)">Experience real educational interfaces before you buy. Click any game or system below to launch it.</p>
-<div class="demo-grid">
-<div class="demo-games">
-<div class="demo-game-card" onclick="launchDemo('quiz')"><span class="demo-game-icon">🧠</span><div class="demo-game-title">Word Quiz Game</div><div class="demo-game-desc">Vocabulary builder for Grade 1-3</div></div>
-<div class="demo-game-card" onclick="launchDemo('math')"><span class="demo-game-icon">🔢</span><div class="demo-game-title">Math Challenge</div><div class="demo-game-desc">Fun addition & subtraction</div></div>
-<div class="demo-game-card" onclick="launchDemo('color')"><span class="demo-game-icon">🎨</span><div class="demo-game-title">Color Match</div><div class="demo-game-desc">Color recognition for preschool</div></div>
-<div class="demo-game-card" onclick="launchDemo('count')"><span class="demo-game-icon">🍎</span><div class="demo-game-title">Counting Game</div><div class="demo-game-desc">Count objects & learn numbers</div></div>
-</div>
-<div class="demo-frame">
-<div id="demo-container">
-<div class="demo-placeholder">
-<span class="demo-placeholder-icon">👆</span>
-<div class="demo-placeholder-text">Click a game card to launch the demo!</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section> -->
-
-<!-- DEMO SECTION -->
-<section id="demo" class="demo-section">
-<div class="section-inner">
+  <div class="section-inner">
     <div class="section-tag" style="background:rgba(255,255,255,.1);color:#FCD34D">Interactive Demo Zone</div>
     <h2 class="section-title" style="color:#fff">Try the Apps Live — Right Here</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.7)">Experience real educational interfaces before you buy. Click any game card to launch it.</p>
-    
+    <p class="section-sub" style="color:rgba(255,255,255,.7)">Click any game card to launch it.</p>
     <div class="demo-grid">
-        <div class="demo-games">
-            <div class="demo-game-card" onclick="launchDemo('quiz')"><span class="demo-game-icon">🧠</span><div class="demo-game-title">Word Quiz Game</div><div class="demo-game-desc">Vocabulary builder for Grade 1-3</div></div>
-            <div class="demo-game-card" onclick="launchDemo('math')"><span class="demo-game-icon">🔢</span><div class="demo-game-title">Math Challenge</div><div class="demo-game-desc">Fun addition & subtraction</div></div>
-            <div class="demo-game-card" onclick="launchDemo('color')"><span class="demo-game-icon">🎨</span><div class="demo-game-title">Color Match</div><div class="demo-game-desc">Color recognition for preschool</div></div>
-            <div class="demo-game-card" onclick="launchDemo('count')"><span class="demo-game-icon">🍎</span><div class="demo-game-title">Counting Game</div><div class="demo-game-desc">Count objects & learn numbers</div></div>
+      <div class="demo-games">
+        <div class="demo-game-card" onclick="launchDemo('quiz')"><span class="demo-game-icon">🧠</span><div class="demo-game-title">Word Quiz</div><div class="demo-game-desc">Vocabulary for Grade 1-3</div></div>
+        <div class="demo-game-card" onclick="launchDemo('math')"><span class="demo-game-icon">🔢</span><div class="demo-game-title">Math Challenge</div><div class="demo-game-desc">Addition & subtraction</div></div>
+        <div class="demo-game-card" onclick="launchDemo('color')"><span class="demo-game-icon">🎨</span><div class="demo-game-title">Color Match</div><div class="demo-game-desc">Color recognition</div></div>
+        <div class="demo-game-card" onclick="launchDemo('count')"><span class="demo-game-icon">🍎</span><div class="demo-game-title">Counting Game</div><div class="demo-game-desc">Count objects</div></div>
+      </div>
+      <div class="demo-frame">
+        <div id="demo-container">
+          <div class="demo-placeholder"><span class="demo-placeholder-icon">👆</span><div class="demo-placeholder-text">Click a game card to launch!</div></div>
         </div>
-        
-        <div class="demo-frame">
-            <div id="demo-container">
-                <div class="demo-placeholder">
-                    <span class="demo-placeholder-icon">👆</span>
-                    <div class="demo-placeholder-text">Click a game card to launch the demo!</div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-
-    <!-- More Button -->
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="arcade.html" class="more-btn">
-            More Games 
-            <span style="margin-left: 8px; font-size: 1.2rem;">→</span>
-        </a>
-    </div>
-
-</div>
+    <div style="text-align:center;margin-top:28px;"><a href="arcade.html" class="more-btn">More Games →</a></div>
+  </div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-<div class="section-inner">
-<div class="section-tag">What I Offer</div>
-<h2 class="section-title">Services for Students, Teachers & Schools</h2>
-<p class="section-sub">From thesis development to custom web apps — I have everything you need to succeed.</p>
-<div class="services-grid" id="servicesGrid"></div>
-</div>
+  <div class="section-inner">
+    <div class="section-tag">What I Offer</div>
+    <h2 class="section-title">Services for Students, Teachers & Schools</h2>
+    <p class="section-sub">From thesis development to custom web apps — I have everything you need.</p>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials-section">
-<div class="section-inner">
-<div class="section-tag">Happy Clients</div>
-<h2 class="section-title">What Students & Teachers Say</h2>
-<div class="testimonials-grid" id="testimonialsGrid"></div>
-</div>
+  <div class="section-inner">
+    <div class="section-tag">Happy Clients</div>
+    <h2 class="section-title">What Students & Teachers Say</h2>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
-<div class="section-inner">
-<div class="section-tag" style="background:rgba(255,255,255,.1);color:#FCD34D">Let's Build Something</div>
-<h2 class="section-title" style="color:#fff">Request a Custom System</h2>
-<p class="section-sub" style="color:rgba(255,255,255,.7)">Have a thesis, capstone, or school project in mind? Let's talk about your requirements.</p>
-<div class="contact-grid">
-<div class="contact-form">
-<div style="font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:20px">📨 Send an Inquiry</div>
-<div class="form-row"><label class="form-label">Your Name</label><input class="form-input" placeholder="e.g. Maria Santos"></div>
-<div class="form-row"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="you@email.com"></div>
-<div class="form-row"><label class="form-label">Project Type</label>
-<select class="form-select">
-<option>Thesis / Capstone System</option>
-<option>Learning Management System</option>
-<option>Educational Web Game</option>
-<option>Attendance System</option>
-<option>Interactive Quiz System</option>
-<option>Arduino-based Project</option>
-<option>Custom Web Application</option>
-<option>Source Code Purchase</option>
-</select></div>
-<div class="form-row"><label class="form-label">Project Details</label><textarea class="form-textarea" placeholder="Describe your system, requirements, target users, deadline..."></textarea></div>
-<button class="btn-send" onclick="sendInquiry()">🚀 Send Inquiry</button>
-</div>
-<div class="contact-info">
-<h3>Connect With Me Directly</h3>
-<div class="contact-links">
-<a href="#" class="contact-link"><div class="contact-link-icon" style="background:linear-gradient(135deg,#1877F2,#0052cc)">📘</div><div><div class="contact-link-text">Facebook Messenger</div><div class="contact-link-sub">Fastest response — usually within 1 hour</div></div></a>
-<a href="#" class="contact-link"><div class="contact-link-icon" style="background:linear-gradient(135deg,#25D366,#128C7E)">💬</div><div><div class="contact-link-text">WhatsApp</div><div class="contact-link-sub">+63 9XX XXX XXXX</div></div></a>
-<a href="#" class="contact-link"><div class="contact-link-icon" style="background:linear-gradient(135deg,#0088cc,#005f8e)">📲</div><div><div class="contact-link-text">Telegram</div><div class="contact-link-sub">@EduCraftSystems</div></div></a>
-<a href="mailto:hello@educraftsystems.dev" class="contact-link"><div class="contact-link-icon" style="background:linear-gradient(135deg,#EA4335,#C5221F)">📧</div><div><div class="contact-link-text">Email</div><div class="contact-link-sub">hello@educraftsystems.dev</div></div></a>
-</div>
-<div style="margin-top:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:20px">
-<div style="font-weight:800;color:#FCD34D;margin-bottom:8px">⚡ Typical Turnaround</div>
-<div style="color:rgba(255,255,255,.7);font-size:.85rem;line-height:1.8">
-Simple Quiz System: 2–3 days<br>
-Attendance System: 3–5 days<br>
-Full LMS Platform: 1–2 weeks<br>
-Thesis w/ Documentation: 1–3 weeks
-</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="section-inner">
+    <div class="section-tag" style="background:rgba(255,255,255,.1);color:#FCD34D">Let's Build Something</div>
+    <h2 class="section-title" style="color:#fff">Request a Custom System</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.7)">Have a thesis, capstone, or school project in mind? Let's talk.</p>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:16px">📨 Send an Inquiry</div>
+        <div class="form-row"><label class="form-label">Your Name</label><input class="form-input" placeholder="Maria Santos"></div>
+        <div class="form-row"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@email.com"></div>
+        <div class="form-row"><label class="form-label">Project Type</label>
+          <select class="form-select">
+            <option>Thesis / Capstone</option><option>LMS</option><option>Educational Game</option>
+            <option>Attendance System</option><option>Quiz System</option><option>Arduino</option>
+            <option>Custom Web App</option><option>Source Code</option>
+          </select>
+        </div>
+        <div class="form-row"><label class="form-label">Details</label><textarea class="form-textarea" placeholder="Describe your system, requirements, deadline..."></textarea></div>
+        <button class="btn-send" onclick="sendInquiry()">🚀 Send Inquiry</button>
+      </div>
+      <div class="contact-info">
+        <h3>Connect With Me</h3>
+        <div class="contact-links">
+          <a href="#" class="contact-link"><span class="contact-link-icon" style="background:linear-gradient(135deg,#1877F2,#0052cc)">📘</span><div><div class="contact-link-text">Facebook Messenger</div><div class="contact-link-sub">Fastest response</div></div></a>
+          <a href="#" class="contact-link"><span class="contact-link-icon" style="background:linear-gradient(135deg,#25D366,#128C7E)">💬</span><div><div class="contact-link-text">WhatsApp</div><div class="contact-link-sub">+63 9XX XXX XXXX</div></div></a>
+          <a href="#" class="contact-link"><span class="contact-link-icon" style="background:linear-gradient(135deg,#0088cc,#005f8e)">📲</span><div><div class="contact-link-text">Telegram</div><div class="contact-link-sub">@EduCraftSystems</div></div></a>
+          <a href="mailto:hello@educraftsystems.dev" class="contact-link"><span class="contact-link-icon" style="background:linear-gradient(135deg,#EA4335,#C5221F)">📧</span><div><div class="contact-link-text">Email</div><div class="contact-link-sub">hello@educraftsystems.dev</div></div></a>
+        </div>
+        <div style="margin-top:20px;background:rgba(255,255,255,.06);border-radius:14px;padding:16px">
+          <div style="font-weight:800;color:#FCD34D;margin-bottom:6px">⚡ Typical Turnaround</div>
+          <div style="color:rgba(255,255,255,.7);font-size:.8rem;line-height:1.7">Quiz System: 2–3 days · Attendance: 3–5 days · LMS: 1–2 weeks · Thesis: 1–3 weeks</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-<p>© 2025 EduCraft Systems · Built with 💙 for future educators · Philippines</p>
-<p style="margin-top:6px"><a href="#home">Home</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></p>
-</footer>
+<footer><p>© 2025 EduCraft Systems · Built with 💙 for future educators · Philippines</p><p><a href="#home">Home</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></p></footer>
 
-<!-- PROJECT MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="projectModal">
-<div class="modal-box">
-<button class="modal-close" onclick="closeModal()">✕</button>
-<div class="modal-header" id="modalHeader"></div>
-<div class="modal-body">
-<div class="modal-title" id="modalTitle"></div>
-<div class="modal-desc" id="modalDesc"></div>
-<div style="font-family:'Sora',sans-serif;font-size:.82rem;font-weight:700;color:var(--ec-navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">Key Features</div>
-<div class="modal-feature-list" id="modalFeatures"></div>
-<div style="font-family:'Sora',sans-serif;font-size:.82rem;font-weight:700;color:var(--ec-navy);margin:16px 0 10px;text-transform:uppercase;letter-spacing:.5px">Pricing Packages</div>
-<div class="pricing-cards">
-<div class="pricing-card"><div class="p-label">Source Code</div><div class="p-price" id="price1"></div><div class="p-what">PHP files + DB<br>+ README</div></div>
-<div class="pricing-card featured"><div class="p-label">⭐ Full System</div><div class="p-price" id="price2"></div><div class="p-what">Deployed + setup<br>+ walkthrough</div></div>
-<div class="pricing-card"><div class="p-label">Custom Build</div><div class="p-price">Custom</div><div class="p-what">Your specs<br>+ documentation</div></div>
-</div>
-<div class="modal-footer">
-<button class="btn-demo" style="flex:2" onclick="closeModal();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">📨 Request This System</button>
-<button class="btn-details" onclick="closeModal()">Close</button>
-</div>
-</div>
-</div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-body">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div style="font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;color:var(--ec-navy);margin-bottom:8px;text-transform:uppercase">Key Features</div>
+      <div class="modal-feature-list" id="modalFeatures"></div>
+      <div style="font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;color:var(--ec-navy);margin:12px 0 8px;text-transform:uppercase">Pricing</div>
+      <div class="pricing-cards">
+        <div class="pricing-card"><div class="p-label">Source Code</div><div class="p-price" id="price1"></div><div class="p-what">PHP + DB + README</div></div>
+        <div class="pricing-card featured"><div class="p-label">⭐ Full System</div><div class="p-price" id="price2"></div><div class="p-what">Deployed + walkthrough</div></div>
+        <div class="pricing-card"><div class="p-label">Custom</div><div class="p-price">Custom</div><div class="p-what">Your specs + docs</div></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-demo" style="flex:2" onclick="closeModal();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">📨 Request</button>
+        <button class="btn-details" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast">✅ Inquiry sent! I'll reply within 24 hours.</div>
 
 <script>
-const projects=[
-{id:1,title:'SmartAttend Pro',desc:'QR-code based classroom attendance system with real-time dashboards, parent notifications, and monthly reports.',cat:'attendance',thumb:'📋',bg:'linear-gradient(135deg,#EFF6FF,#BFDBFE)',catLabel:'Attendance System',catColor:'#2563EB',catBg:'#EFF6FF',tech:['PHP','MySQL','Bootstrap','QR.js'],price1:'₱1,500',price2:'₱2,500',features:['QR Code scanner','Real-time dashboard','Parent SMS alerts','Monthly PDF reports','Export to Excel','Admin panel','Teacher accounts','Mobile responsive'],rating:5},
-{id:2,title:'LexiLearn Reading Hub',desc:'Interactive reading comprehension system for Grades 1–3 with story levels, comprehension quizzes, and progress tracking.',cat:'lms',thumb:'📚',bg:'linear-gradient(135deg,#F0FDF4,#BBF7D0)',catLabel:'LMS',catColor:'#10B981',catBg:'#F0FDF4',tech:['React','Firebase','Tailwind'],price1:'₱2,000',price2:'₱3,500',features:['Leveled reading stories','Comprehension quizzes','Audio narration','Progress badges','Teacher dashboard','Parent reports','Story library (50+)','MELC-aligned'],rating:5},
-{id:3,title:'NumBuddy Math Game',desc:'Gamified math practice for preschool to Grade 2. Features counting, addition, subtraction with adorable animations.',cat:'game',thumb:'🔢',bg:'linear-gradient(135deg,#FFF7ED,#FED7AA)',catLabel:'Math Game',catColor:'#F97316',catBg:'#FFF7ED',tech:['HTML5','CSS3','Vanilla JS'],price1:'₱800',price2:'₱1,500',features:['3 game modes','Animated characters','Sound effects','Difficulty levels','Score leaderboard','Certificate printing','Teacher mode','Mobile-friendly'],rating:5},
-{id:4,title:'KinderTrack LMS',desc:'Full learning management system tailored for preschool — lesson plans, daily activities, developmental milestones.',cat:'preschool',thumb:'🌟',bg:'linear-gradient(135deg,#FDF4FF,#E9D5FF)',catLabel:'Preschool App',catColor:'#8B5CF6',catBg:'#FDF4FF',tech:['Next.js','MongoDB','Tailwind'],price1:'₱3,000',price2:'₱5,000',features:['Daily lesson planner','Milestone tracker','Parent portal','Photo documentation','Developmental reports','Class scheduler','Activity library','Multi-teacher support'],rating:5},
-{id:5,title:'WordWiz Spelling Quiz',desc:'Adaptive spelling quiz system with audio pronunciation, difficulty scaling, and classroom competition mode.',cat:'quiz',thumb:'🔤',bg:'linear-gradient(135deg,#FFF1F2,#FECDD3)',catLabel:'Quiz System',catColor:'#EC4899',catBg:'#FFF1F2',tech:['Vue.js','Node.js','MongoDB'],price1:'₱1,200',price2:'₱2,200',features:['Text-to-speech audio','3 difficulty levels','Live class mode','Timer challenges','Auto-grading','Score analytics','Word bank editor','Certificate awards'],rating:4},
-{id:6,title:'EcoBot Sensor Station',desc:'Arduino-based environmental monitoring station for science class — temperature, humidity, and air quality sensors with web dashboard.',cat:'arduino',thumb:'🤖',bg:'linear-gradient(135deg,#ECFDF5,#A7F3D0)',catLabel:'Arduino/IoT',catColor:'#059669',catBg:'#ECFDF5',tech:['Arduino','C++','PHP','Chart.js'],price1:'₱2,500',price2:'₱4,000',features:['DHT22 sensor data','Air quality monitor','Web dashboard','Real-time graphs','Data logging','Alert notifications','Student worksheet','Full documentation'],rating:5},
-];
+  // Data & render functions (same as original, compact)
+  const projectsData = [
+    {id:1,title:'SmartAttend Pro',desc:'QR-code classroom attendance with real-time dashboards and parent alerts.',cat:'attendance',thumb:'📋',bg:'linear-gradient(135deg,#EFF6FF,#BFDBFE)',catLabel:'Attendance',catColor:'#2563EB',catBg:'#EFF6FF',tech:['PHP','MySQL','Bootstrap'],price1:'₱1,500',price2:'₱2,500',features:['QR scanner','Real-time dashboard','Parent SMS','Monthly PDF reports','Admin panel','Mobile responsive'],rating:5},
+    {id:2,title:'LexiLearn Reading Hub',desc:'Interactive reading comprehension for Grades 1–3 with story levels and progress tracking.',cat:'lms',thumb:'📚',bg:'linear-gradient(135deg,#F0FDF4,#BBF7D0)',catLabel:'LMS',catColor:'#10B981',catBg:'#F0FDF4',tech:['React','Firebase','Tailwind'],price1:'₱2,000',price2:'₱3,500',features:['Leveled stories','Comprehension quizzes','Audio narration','Progress badges','Teacher dashboard','MELC-aligned'],rating:5},
+    {id:3,title:'NumBuddy Math Game',desc:'Gamified math practice for preschool to Grade 2 with animations.',cat:'game',thumb:'🔢',bg:'linear-gradient(135deg,#FFF7ED,#FED7AA)',catLabel:'Math Game',catColor:'#F97316',catBg:'#FFF7ED',tech:['HTML5','CSS3','Vanilla JS'],price1:'₱800',price2:'₱1,500',features:['3 game modes','Animated characters','Sound effects','Difficulty levels','Score leaderboard','Mobile-friendly'],rating:5},
+    {id:4,title:'KinderTrack LMS',desc:'Full LMS for preschool — lesson plans, milestones, parent portal.',cat:'preschool',thumb:'🌟',bg:'linear-gradient(135deg,#FDF4FF,#E9D5FF)',catLabel:'Preschool',catColor:'#8B5CF6',catBg:'#FDF4FF',tech:['Next.js','MongoDB','Tailwind'],price1:'₱3,000',price2:'₱5,000',features:['Daily planner','Milestone tracker','Parent portal','Photo docs','Developmental reports','Multi-teacher'],rating:5},
+    {id:5,title:'WordWiz Spelling Quiz',desc:'Adaptive spelling quiz with audio and classroom competition mode.',cat:'quiz',thumb:'🔤',bg:'linear-gradient(135deg,#FFF1F2,#FECDD3)',catLabel:'Quiz',catColor:'#EC4899',catBg:'#FFF1F2',tech:['Vue.js','Node.js','MongoDB'],price1:'₱1,200',price2:'₱2,200',features:['Text-to-speech','3 difficulty levels','Live class mode','Auto-grading','Word bank editor','Certificate awards'],rating:4},
+    {id:6,title:'EcoBot Sensor Station',desc:'Arduino-based environmental monitoring with web dashboard.',cat:'arduino',thumb:'🤖',bg:'linear-gradient(135deg,#ECFDF5,#A7F3D0)',catLabel:'Arduino',catColor:'#059669',catBg:'#ECFDF5',tech:['Arduino','C++','PHP','Chart.js'],price1:'₱2,500',price2:'₱4,000',features:['DHT22 sensor','Air quality monitor','Web dashboard','Real-time graphs','Data logging','Full documentation'],rating:5}
+  ];
+  const servicesData = [
+    {icon:'🎓',title:'Thesis Development',desc:'Complete thesis systems with documentation and defense prep.',bg:'#EFF6FF'},
+    {icon:'🌐',title:'Educational Web Apps',desc:'Custom LMS, portals, databases for schools.',bg:'#F0FDF4'},
+    {icon:'🎮',title:'Learning Games',desc:'MELC-aligned interactive games for Math, Reading, Science.',bg:'#FFF7ED'},
+    {icon:'🎨',title:'UI/UX Design',desc:'Beautiful interfaces for children and educators.',bg:'#FDF4FF'},
+    {icon:'⚙️',title:'Customization',desc:'Feature tweaks, branding, content updates.',bg:'#FFF1F2'},
+    {icon:'🔧',title:'Maintenance',desc:'Bug fixes, upgrades, post-deployment support.',bg:'#ECFDF5'},
+    {icon:'📄',title:'Documentation',desc:'Technical manuals, user guides, capstone docs.',bg:'#FFFBEB'},
+    {icon:'📡',title:'Arduino/IoT',desc:'Hardware-software integrated projects.',bg:'#EFF6FF'}
+  ];
+  const testimonialsData = [
+    {text:'EduCraft built my capstone reading system in a week! Perfect documentation. High grade!',name:'Danielle R.',role:'ECE Student',color:'#2563EB',stars:5},
+    {text:'The attendance system runs our whole school. Parents love the notifications.',name:'Ma\'am Grace T.',role:'Grade 3 Teacher',color:'#10B981',stars:5},
+    {text:'NumBuddy math game improved my kids\' scores. Worth every peso.',name:'Cathy L.',role:'Parent',color:'#F97316',stars:5},
+    {text:'Professional, fast, and very accommodating. Helped with my defense too!',name:'Mark A.',role:'BEED Thesis Student',color:'#8B5CF6',stars:5},
+    {text:'The LMS system made my classroom more engaging. Dashboard is super useful.',name:'Sir John P.',role:'Elementary Teacher',color:'#EC4899',stars:5},
+    {text:'Spelling quiz runs smoothly on old computers. Highly recommend EduCraft!',name:'Lovely M.',role:'BEED Graduate',color:'#F97316',stars:5}
+  ];
 
-const services=[
-{icon:'🎓',title:'Thesis & Capstone Development',desc:'Complete thesis/capstone systems with full documentation, technical paper assistance, and defense preparation.',bg:'#EFF6FF'},
-{icon:'🌐',title:'Educational Web App Development',desc:'Custom web applications — LMS, portals, databases — built specifically for educational institutions.',bg:'#F0FDF4'},
-{icon:'🎮',title:'Learning Game Development',desc:'Interactive, child-friendly web games for Math, Reading, Science, and more — MELC-aligned.',bg:'#FFF7ED'},
-{icon:'🎨',title:'UI/UX Design',desc:'Beautiful, intuitive interfaces designed for both children and educators with accessibility in mind.',bg:'#FDF4FF'},
-{icon:'⚙️',title:'System Customization',desc:'Need changes to an existing system? I can customize features, branding, and content to fit your school.',bg:'#FFF1F2'},
-{icon:'🔧',title:'Bug Fixing & Maintenance',desc:'Fix errors, update content, upgrade your system, or add new features post-deployment.',bg:'#ECFDF5'},
-{icon:'📄',title:'Documentation Assistance',desc:'Technical manuals, user guides, and capstone documentation written to academic standards.',bg:'#FFFBEB'},
-{icon:'📡',title:'Arduino/IoT Projects',desc:'Hardware-software integrated projects for Science and Technology subjects using Arduino microcontrollers.',bg:'#EFF6FF'},
-];
+  function renderProjects(filter='all'){
+    const grid=document.getElementById('projectsGrid');
+    const filtered=filter==='all'?projectsData:projectsData.filter(p=>p.cat===filter);
+    grid.innerHTML=filtered.map(p=>`
+      <div class="project-card" onclick="openModal(${p.id})">
+        <div class="project-thumb" style="background:${p.bg}"><span>${p.thumb}</span><div class="project-thumb-label">${p.catLabel}</div><div class="project-thumb-price">${p.price1}</div></div>
+        <div class="project-body">
+          <div class="stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</div>
+          <div class="project-cat" style="background:${p.catBg};color:${p.catColor}">${p.catLabel}</div>
+          <div class="project-title">${p.title}</div>
+          <div class="project-desc">${p.desc}</div>
+          <div class="project-tags">${p.tech.map(t=>`<span class="tech-tag">${t}</span>`).join('')}</div>
+          <div class="project-footer">
+            <button class="btn-demo" onclick="event.stopPropagation();launchDemo('quiz')">▶ Demo</button>
+            <button class="btn-details">Details</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+  function filterProjects(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderProjects(cat);}
+  function renderServices(){const grid=document.getElementById('servicesGrid');grid.innerHTML=servicesData.map(s=>`<div class="service-card"><div class="service-icon" style="background:${s.bg}">${s.icon}</div><div class="service-title">${s.title}</div><div class="service-desc">${s.desc}</div></div>`).join('');}
+  function renderTestimonials(){const grid=document.getElementById('testimonialsGrid');grid.innerHTML=testimonialsData.map(t=>`<div class="testi-card"><div class="testi-quote">"</div><div class="stars">${'★'.repeat(t.stars)}</div><div class="testi-text">${t.text}</div><div class="testi-author"><div class="testi-avatar" style="background:${t.color}">${t.name.split(' ').map(n=>n[0]).join('')}</div><div><div class="testi-name">${t.name}</div><div class="testi-role">${t.role}</div></div></div></div>`).join('');}
+  function openModal(id){const p=projectsData.find(x=>x.id===id);document.getElementById('modalHeader').style.background=p.bg;document.getElementById('modalHeader').innerHTML=`<span style="font-size:3.5rem">${p.thumb}</span>`;document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalFeatures').innerHTML=p.features.map(f=>`<div class="modal-feature">${f}</div>`).join('');document.getElementById('price1').textContent=p.price1;document.getElementById('price2').textContent=p.price2;document.getElementById('projectModal').classList.add('open');document.body.style.overflow='hidden';}
+  function closeModal(){document.getElementById('projectModal').classList.remove('open');document.body.style.overflow='';}
+  document.getElementById('projectModal').addEventListener('click',function(e){if(e.target===this)closeModal()});
 
-const testimonials=[
-{text:'EduCraft built my entire capstone — a preschool reading system — in less than a week! The documentation was perfect. My professor gave it a very high grade!',name:'Danielle R.',role:'ECE Student, Cebu Normal University',color:'#2563EB',stars:5},
-{text:'I purchased the attendance system and it\'s now running in our whole school. Parents love the notifications and the reports save us so much time every month.',name:'Ma\'am Grace T.',role:'Grade 3 Teacher, Cebu City',color:'#10B981',stars:5},
-{text:'The NumBuddy math game is my kids\' favorite! They use it every day and their math scores improved so much. Worth every peso.',name:'Cathy L.',role:'Parent, Mandaue City',color:'#F97316',stars:5},
-{text:'Professional, fast, and very accommodating. Customized my thesis system exactly the way I imagined it. Even helped me prepare for my defense!',name:'Mark A.',role:'BEED Thesis Student',color:'#8B5CF6',stars:5},
-{text:'The LMS system was deployed in our classroom within days. Students are more engaged and I can track everything with the dashboard.',name:'Sir John P.',role:'Elementary School Teacher',color:'#EC4899',stars:5},
-{text:'Amazing service. The spelling quiz system runs on our classroom\'s old computers without any issue. Highly recommend EduCraft to all education students!',name:'Lovely M.',role:'BEED Graduate Student',color:'#F97316',stars:5},
-];
+  // DEMO GAMES (same logic, compact)
+  const quizQ = [{q:'What is the capital of the Philippines?',opts:['Cebu','Manila','Davao','Iloilo'],ans:1},{q:'How many vowels in English?',opts:['3','4','5','6'],ans:2},{q:'Red + Blue = ?',opts:['Green','Orange','Purple','Brown'],ans:2},{q:'How many legs does a spider have?',opts:['4','6','8','10'],ans:2},{q:'Closest planet to Sun?',opts:['Earth','Venus','Mercury','Mars'],ans:2}];
+  let qIdx=0,qScore=0;
+  function launchDemo(type){const c=document.getElementById('demo-container');if(type==='quiz'){qIdx=0;qScore=0;renderQuiz(c);}else if(type==='math')renderMath(c);else if(type==='color')renderColor(c);else if(type==='count')renderCount(c);}
+  function renderQuiz(c){if(qIdx>=quizQ.length){c.innerHTML=`<div class="quiz-game"><div style="font-size:3rem">🎉</div><div class="quiz-q">Complete!</div><div style="color:#FCD34D;font-size:1.3rem;font-weight:800;margin:8px 0">Score: ${qScore}/${quizQ.length}</div><button onclick="launchDemo('quiz')" style="background:linear-gradient(135deg,#FCD34D,#F97316);border:none;border-radius:10px;padding:10px 20px;font-weight:800;cursor:pointer;color:#0D1B3E">Play Again</button></div>`;return;}const q=quizQ[qIdx];const pct=Math.round((qIdx/quizQ.length)*100);c.innerHTML=`<div class="quiz-game"><div class="quiz-progress"><div class="quiz-prog-fill" style="width:${pct}%"></div></div><div class="quiz-q">❓ ${q.q}</div><div class="quiz-opts">${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQ(${i},${q.ans})">${o}</button>`).join('')}</div><div class="quiz-score">${qIdx+1}/${quizQ.length} · Score: ${qScore}</div></div>`;}
+  function answerQ(chosen,correct){const btns=document.querySelectorAll('.quiz-opt');btns.forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong')});if(chosen===correct)qScore++;qIdx++;setTimeout(()=>renderQuiz(document.getElementById('demo-container')),900);}
+  let mA,mB,mOp;function renderMath(c){mA=Math.floor(Math.random()*9)+2;mB=Math.floor(Math.random()*9)+2;mOp=Math.random()>.5?'+':'-';if(mOp==='-'&&mB>mA){let t=mA;mA=mB;mB=t;}const ans=mOp==='+'?mA+mB:mA-mB;const wrongs=[ans+1,ans-1,ans+2].filter(x=>x!==ans&&x>=0).slice(0,2);const opts=[ans,...wrongs,ans+3].sort(()=>Math.random()-.5).slice(0,4);c.innerHTML=`<div class="quiz-game"><div style="font-size:2.2rem;font-weight:900;color:#FCD34D;margin-bottom:12px">${mA} ${mOp} ${mB} = ?</div><div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" onclick="checkMath(this,${o},${ans})">${o}</button>`).join('')}</div></div>`;}
+  function checkMath(btn,chosen,correct){document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);if(chosen===correct)btn.classList.add('correct');else btn.classList.add('wrong');setTimeout(()=>renderMath(document.getElementById('demo-container')),900);}
+  const colorsArr=['Red 🔴','Blue 🔵','Green 🟢','Yellow 🟡','Orange 🟠','Purple 🟣'];function renderColor(c){const target=colorsArr[Math.floor(Math.random()*colorsArr.length)];const opts=[target,...colorsArr.filter(x=>x!==target).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);c.innerHTML=`<div class="quiz-game"><div style="font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:4px">Tap the correct color!</div><div class="quiz-q">Which is ${target}?</div><div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" onclick="checkColor(this,'${o}','${target}')">${o}</button>`).join('')}</div></div>`;}
+  function checkColor(btn,chosen,correct){document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);if(chosen===correct)btn.classList.add('correct');else btn.classList.add('wrong');setTimeout(()=>renderColor(document.getElementById('demo-container')),1000);}
+  const fruits=['🍎','🍊','🍋','🍇','🍓','🍌','🍉','🍑'];function renderCount(c){const count=Math.floor(Math.random()*5)+2;const fruit=fruits[Math.floor(Math.random()*fruits.length)];const icons=Array(count).fill(fruit).join(' ');const wrongs=[count-1,count+1,count+2].filter(x=>x>0&&x!==count).slice(0,3);const opts=[count,...wrongs].sort(()=>Math.random()-.5);c.innerHTML=`<div class="quiz-game"><div style="font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:4px">Count the fruits!</div><div style="font-size:1.6rem;letter-spacing:4px;margin-bottom:14px;line-height:1.6">${icons}</div><div class="quiz-q">How many ${fruit}?</div><div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" onclick="checkCount(this,${o},${count})">${o}</button>`).join('')}</div></div>`;}
+  function checkCount(btn,chosen,correct){document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);if(chosen===correct)btn.classList.add('correct');else btn.classList.add('wrong');setTimeout(()=>renderCount(document.getElementById('demo-container')),1000);}
 
-function renderProjects(filter='all'){
-const grid=document.getElementById('projectsGrid');
-const filtered=filter==='all'?projects:projects.filter(p=>p.cat===filter);
-grid.innerHTML=filtered.map(p=>`
-<div class="project-card" onclick="openModal(${p.id})">
-<div class="project-thumb" style="background:${p.bg}">
-<span style="filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))">${p.thumb}</span>
-<div class="project-thumb-label">${p.catLabel}</div>
-<div class="project-thumb-price">${p.price1}</div>
-</div>
-<div class="project-body">
-<div class="stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</div>
-<div class="project-cat" style="background:${p.catBg};color:${p.catColor}">${p.catLabel}</div>
-<div class="project-title">${p.title}</div>
-<div class="project-desc">${p.desc}</div>
-<div class="project-tags">${p.tech.map(t=>`<span class="tech-tag">${t}</span>`).join('')}</div>
-<div class="project-footer">
-<button class="btn-demo" onclick="event.stopPropagation();launchDemo('quiz')">▶ Live Demo</button>
-<button class="btn-details">View Details</button>
-</div>
-</div>
-</div>`).join('');
-}
+  function sendInquiry(){showToast('✅ Inquiry sent! I\'ll reply within 24 hours.');}
+  function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
+  function scrollTo(sel){document.querySelector(sel).scrollIntoView({behavior:'smooth'});}
+  function closeNav(){document.getElementById('navLinks').classList.remove('open');}
+  document.getElementById('navToggle').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
 
-function filterProjects(cat,btn){
-document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-renderProjects(cat);
-}
-
-function renderServices(){
-const grid=document.getElementById('servicesGrid');
-grid.innerHTML=services.map(s=>`
-<div class="service-card">
-<div class="service-icon" style="background:${s.bg}">${s.icon}</div>
-<div class="service-title">${s.title}</div>
-<div class="service-desc">${s.desc}</div>
-</div>`).join('');
-}
-
-function renderTestimonials(){
-const grid=document.getElementById('testimonialsGrid');
-grid.innerHTML=testimonials.map(t=>`
-<div class="testi-card">
-<div class="testi-quote">"</div>
-<div class="stars">${'★'.repeat(t.stars)}</div>
-<div class="testi-text">${t.text}</div>
-<div class="testi-author">
-<div class="testi-avatar" style="background:${t.color}">${t.name.split(' ').map(n=>n[0]).join('')}</div>
-<div><div class="testi-name">${t.name}</div><div class="testi-role">${t.role}</div></div>
-</div>
-</div>`).join('');
-}
-
-function openModal(id){
-const p=projects.find(x=>x.id===id);
-document.getElementById('modalHeader').style.background=p.bg;
-document.getElementById('modalHeader').innerHTML=`<span style="font-size:4rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.2))">${p.thumb}</span>`;
-document.getElementById('modalTitle').textContent=p.title;
-document.getElementById('modalDesc').textContent=p.desc;
-document.getElementById('modalFeatures').innerHTML=p.features.map(f=>`<div class="modal-feature">${f}</div>`).join('');
-document.getElementById('price1').textContent=p.price1;
-document.getElementById('price2').textContent=p.price2;
-document.getElementById('projectModal').classList.add('open');
-document.body.style.overflow='hidden';
-}
-function closeModal(){document.getElementById('projectModal').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('projectModal').addEventListener('click',function(e){if(e.target===this)closeModal()});
-
-/* DEMO GAMES */
-const quizData=[
-{q:'What is the capital of the Philippines?',opts:['Cebu','Manila','Davao','Iloilo'],ans:1},
-{q:'How many vowels are in the English alphabet?',opts:['3','4','5','6'],ans:2},
-{q:'What color do you get when you mix red and blue?',opts:['Green','Orange','Purple','Brown'],ans:2},
-{q:'How many legs does a spider have?',opts:['4','6','8','10'],ans:2},
-{q:'Which planet is closest to the Sun?',opts:['Earth','Venus','Mercury','Mars'],ans:2},
-];
-let quizIdx=0,quizScore=0;
-
-function launchDemo(type){
-const c=document.getElementById('demo-container');
-if(type==='quiz'){
-quizIdx=0;quizScore=0;
-renderQuiz(c);
-}else if(type==='math'){
-renderMath(c);
-}else if(type==='color'){
-renderColor(c);
-}else if(type==='count'){
-renderCount(c);
-}
-}
-
-function renderQuiz(c){
-if(quizIdx>=quizData.length){
-c.innerHTML=`<div class="quiz-game"><div style="font-size:3rem;margin-bottom:12px">🎉</div><div class="quiz-q">Quiz Complete!</div><div style="color:#FCD34D;font-size:1.5rem;font-weight:800;margin:12px 0">Score: ${quizScore}/${quizData.length}</div><button onclick="launchDemo('quiz')" style="background:linear-gradient(135deg,#FCD34D,#F97316);border:none;border-radius:12px;padding:12px 24px;font-family:Nunito,sans-serif;font-weight:800;font-size:1rem;cursor:pointer;color:#0D1B3E;margin-top:8px">Play Again 🔄</button></div>`;
-return;
-}
-const q=quizData[quizIdx];
-const pct=Math.round((quizIdx/quizData.length)*100);
-c.innerHTML=`<div class="quiz-game">
-<div class="quiz-progress"><div class="quiz-prog-fill" style="width:${pct}%"></div></div>
-<div class="quiz-q">❓ ${q.q}</div>
-<div class="quiz-opts">${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i},${q.ans})">${o}</button>`).join('')}</div>
-<div class="quiz-score">Question ${quizIdx+1} of ${quizData.length} · Score: ${quizScore}</div>
-</div>`;
-}
-
-function answerQuiz(chosen,correct){
-const btns=document.querySelectorAll('.quiz-opt');
-btns.forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong')});
-if(chosen===correct)quizScore++;
-quizIdx++;
-setTimeout(()=>renderQuiz(document.getElementById('demo-container')),1000);
-}
-
-let mathA,mathB,mathOp;
-function renderMath(c){
-mathA=Math.floor(Math.random()*10)+1;
-mathB=Math.floor(Math.random()*10)+1;
-mathOp=Math.random()>.5?'+':'-';
-if(mathOp==='-'&&mathB>mathA){let t=mathA;mathA=mathB;mathB=t;}
-const ans=mathOp==='+'?mathA+mathB:mathA-mathB;
-const wrongs=[ans+1,ans-1,ans+2].filter(x=>x!==ans&&x>=0).slice(0,2);
-const opts=[ans,...wrongs,ans+3].sort(()=>Math.random()-.5).slice(0,4);
-c.innerHTML=`<div class="quiz-game">
-<div style="font-size:2.5rem;font-weight:900;color:#FCD34D;margin-bottom:16px;font-family:Sora,sans-serif">${mathA} ${mathOp} ${mathB} = ?</div>
-<div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" onclick="checkMath(this,${o},${ans})">${o}</button>`).join('')}</div>
-<div class="quiz-score">Tap the correct answer!</div>
-</div>`;
-}
-
-function checkMath(btn,chosen,correct){
-document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
-if(chosen===correct)btn.classList.add('correct');else btn.classList.add('wrong');
-setTimeout(()=>renderMath(document.getElementById('demo-container')),1000);
-}
-
-const colors=['Red 🔴','Blue 🔵','Green 🟢','Yellow 🟡','Orange 🟠','Purple 🟣'];
-function renderColor(c){
-const target=colors[Math.floor(Math.random()*colors.length)];
-const opts=[target,...colors.filter(x=>x!==target).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);
-c.innerHTML=`<div class="quiz-game">
-<div style="font-size:1rem;color:rgba(255,255,255,.7);margin-bottom:8px">Tap the correct color!</div>
-<div class="quiz-q">Which one is ${target}?</div>
-<div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" onclick="checkColor(this,'${o}','${target}')">${o}</button>`).join('')}</div>
-</div>`;
-}
-
-function checkColor(btn,chosen,correct){
-document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
-if(chosen===correct)btn.classList.add('correct');else btn.classList.add('wrong');
-setTimeout(()=>renderColor(document.getElementById('demo-container')),1100);
-}
-
-const fruits=['🍎','🍊','🍋','🍇','🍓','🍌','🍉','🍑'];
-function renderCount(c){
-const count=Math.floor(Math.random()*6)+2;
-const fruit=fruits[Math.floor(Math.random()*fruits.length)];
-const icons=Array(count).fill(fruit).join(' ');
-const wrongs=[count-1,count+1,count+2].filter(x=>x>0&&x!==count).slice(0,3);
-const opts=[count,...wrongs].sort(()=>Math.random()-.5);
-c.innerHTML=`<div class="quiz-game">
-<div style="font-size:1rem;color:rgba(255,255,255,.7);margin-bottom:8px">Count the fruits! 🍽️</div>
-<div style="font-size:1.8rem;letter-spacing:4px;margin-bottom:20px;line-height:1.8">${icons}</div>
-<div class="quiz-q">How many ${fruit} are there?</div>
-<div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" onclick="checkCount(this,${o},${count})">${o}</button>`).join('')}</div>
-</div>`;
-}
-
-function checkCount(btn,chosen,correct){
-document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
-if(chosen===correct)btn.classList.add('correct');else btn.classList.add('wrong');
-setTimeout(()=>renderCount(document.getElementById('demo-container')),1100);
-}
-
-function sendInquiry(){
-showToast('✅ Inquiry sent! I\'ll reply within 24 hours.');
-}
-
-function showToast(msg){
-const t=document.getElementById('toast');
-t.textContent=msg;
-t.classList.add('show');
-setTimeout(()=>t.classList.remove('show'),3500);
-}
-
-function scrollTo(sel){document.querySelector(sel).scrollIntoView({behavior:'smooth'});}
-
-renderProjects();renderServices();renderTestimonials();
+  renderProjects();renderServices();renderTestimonials();
 </script>
 </body>
 </html>
