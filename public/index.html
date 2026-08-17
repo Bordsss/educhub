@@ -2029,7 +2029,7 @@
             </button>
           </div>
           <div class="contact-info">
-            <h3>Connect With Me</h3>
+            <h3>Connect With Us</h3>
             <div class="contact-links">
               <a href="https://m.me/1229944200208900" target="_blank" rel="noopener noreferrer" class="contact-link"
                 ><span
@@ -2658,6 +2658,31 @@
 
       function sendInquiry() {
         showToast("✅ Inquiry sent! I'll reply within 24 hours.");
+        const name = document.getElementById("userName").value.trim();
+    const email = document.getElementById("userEmail").value.trim();
+    const project = document.getElementById("projectType").value;
+    const details = document.getElementById("projectDetails").value.trim();
+
+    if (!name || !email || !details) {
+      alert("Please fill in all required fields before sending.");
+      return;
+    }
+
+    const recipient = "educraftsystems@gmail.com";
+    const subject = encodeURIComponent(`[Inquiry] ${project} - ${name}`);
+    
+    const bodyText = `Hello EduCraft Systems,\n\n` +
+      `You have received a new inquiry:\n\n` +
+      `👤 Name: ${name}\n` +
+      `📧 Email: ${email}\n` +
+      `🛠️ Project Type: ${project}\n\n` +
+      `📝 Project Details:\n${details}\n\n` +
+      `---\nSent from EduCraft Web App`;
+
+    const body = encodeURIComponent(bodyText);
+
+    // Opens user's default email client pre-filled
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
       }
       function showToast(msg) {
         const t = document.getElementById("toast");
